@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDF Creator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.3/jspdf.plugin.autotable.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="NETNOX/BebasNeue-Regular-normal.js"></script>
+</head>
+<h1 style="text-align: center; font-family: 'Bebas Neue', cursive; font-weight: bold;">PDF Creator</h1>
+<body>
+  <div>
+    
+    <form>
+        <div>
+            <div class="rt">
+      <label>Title:</label>
+      <input type="text" id="pdfTitle" placeholder="Enter title here">
+      <br>
+
+    
+      <label>Information:</label>
+      <br>
+      <textarea id="pdfInfo" placeholder="Enter information here"></textarea>
+    </form>
+    <br>
+    <button onclick="createPDF()">Create PDF</button></div>
+  </div>
+  <script>
+ function createPDF() {
+  var pdf = new jsPDF();
+  var title = document.getElementById("pdfTitle").value;
+  var info = document.getElementById("pdfInfo").value;
+  var img = new Image()
+img.src = 'ck.png'
+pdf.addImage(img, 'png', 0, 0, 210, 297)
+      
+ pdf.addFont('Helvetica', 'Helvetica', 'normal')
+pdf.setFont('Helvetica')
+  pdf.setFontSize(15);
+  pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" }); // Position the title at the center of the page
+  pdf.setFontSize(7);
+  pdf.text(info, 10, 30);
+
+  pdf.save(title + ".pdf");
+}
+
+  </script>
+<style>
+
+    .rt{
+        padding-left: 37%;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    body {
+      background-color: black;
+      color: white;
+   
+    }
+    
+    h1 {
+      text-shadow: 0px 0px 10px white;
+     
+  
+     position: relative;
+  margin: 0 auto;
+  text-align: left;
+  clear: left;
+  height: auto;
+  z-index: 0;
+    }
+    
+    form {
+      padding: 20px;
+      border-radius: 20px;
+   
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+   
+align-items: center;
+    }
+    
+    input{
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      background-color: #333333;
+      color: white;
+      flex: 1;
+      font-family: 'Bebas Neue', cursive;
+    }
+    textarea {
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      background-color: #333333;
+      color: white;
+      flex: 1;
+      font-family: 'Bebas Neue', cursive;
+    }
+    
+    button {
+        margin-top: 10px;
+padding: 5px 10px;
+
+      border-radius: 20px;
+      padding: 10px;
+      background-color: white;
+      color: black;
+      font-family: 'Bebas Neue', cursive;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+      align-self: center;
+      width: 35%;
+      padding: 10px 20px;
+    }
+    
+    button:hover {
+      background-color: #333333;
+      color: white;
+    }
+    label{
+        color: white;
+        font-family: 'Bebas Neue', cursive;
+    }
+    </style>
+    </body>
+    
+
+</body>
+</html>
