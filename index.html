@@ -58,7 +58,7 @@ function createPDF() {
 var pdf = new jsPDF();
 var title = document.getElementById("pdfTitle").value;
 var info = document.getElementById("pdfInfo").value;
-  pdf.setPageFormat("a4");
+
 pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
 pdf.addFont('Helvetica', 'Helvetica', 'normal')
 pdf.setFont('Helvetica')
