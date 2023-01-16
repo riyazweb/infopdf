@@ -64,16 +64,12 @@ pdf.setFont('Helvetica')
 
 
 
-
 pdf.setFontSize(15);
 pdf.setTextColor(255, 255, 255);
 pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" }); // Position the title at the center of the page
 pdf.setFontSize(15);
 pdf.text(10, 30, pdf.splitTextToSize(info, 190));
 
-if (pdf.getTextWidth(info) > pdf.internal.pageSize.getWidth() - 20) {
-pdf.addPage(); // Add a new page if the text is full
-}
 
 
 
