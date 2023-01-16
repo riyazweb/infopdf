@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>PDF Creator</title>
+  sc
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.3/jspdf.plugin.autotable.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -39,8 +40,9 @@ pdf.addImage(img, 'png', 0, 0, 210, 297)
 pdf.setFont('Helvetica')
   pdf.setFontSize(15);
   pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" }); // Position the title at the center of the page
-  pdf.setFontSize(7);
-  pdf.text(info, 10, 30);
+  pdf.setFontSize(15);
+  pdf.text(10, 30, pdf.splitTextToSize(info, 190));
+
 
   pdf.save(title + ".pdf");
 }
