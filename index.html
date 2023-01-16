@@ -22,32 +22,66 @@
     
       <label>Information:</label>
       <br>
-      <textarea id="pdfInfo" placeholder="Enter information here"></textarea>
+      <textarea id="pdfInfo" placeholder="Enter information here"></textarea> 
+      <br>
+       <input type="file" id="image" onchange="previewImage()">
+       <br>
+      
+      <button onclick="createPDF()">Create PDF</button>
+      <br>
+      <img style="height: 150px; width: 150px;"   id="preview" src="" alt="Preview">
+      <br>
+    
+
+
     </form>
     <br>
-    <button onclick="createPDF()">Create PDF</button></div>
+
   </div>
-  <script>
- function createPDF() {
-  var pdf = new jsPDF();
-  var title = document.getElementById("pdfTitle").value;
-  var info = document.getElementById("pdfInfo").value;
-  var img = new Image()
-img.src = 'ck.png'
-pdf.addImage(img, 'png', 0, 0, 210, 297)
-      
- pdf.addFont('Helvetica', 'Helvetica', 'normal')
-pdf.setFont('Helvetica')
-  pdf.setFontSize(15);
-  pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" }); // Position the title at the center of the page
-  pdf.setFontSize(15);
-  pdf.text(10, 30, pdf.splitTextToSize(info, 190));
-
-
-  pdf.save(title + ".pdf");
+  
+</form>
+</div>
+<script>
+var img;
+function previewImage() {
+  var preview = document.getElementById("preview");
+  var image = document.getElementById("image").files[0];
+  var reader = new FileReader();
+  reader.onload = function () {
+      preview.src = reader.result;
+      img = preview.src;
+  }
+  reader.readAsDataURL(image);
 }
 
-  </script>
+function createPDF() {
+var pdf = new jsPDF();
+var title = document.getElementById("pdfTitle").value;
+var info = document.getElementById("pdfInfo").value;
+pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
+pdf.addFont('Helvetica', 'Helvetica', 'normal')
+pdf.setFont('Helvetica')
+
+
+
+
+pdf.setFontSize(15);
+pdf.setTextColor(255, 255, 255);
+pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" }); // Position the title at the center of the page
+pdf.setFontSize(15);
+pdf.text(10, 30, pdf.splitTextToSize(info, 190));
+
+if (pdf.getTextWidth(info) > pdf.internal.pageSize.getWidth() - 20) {
+pdf.addPage(); // Add a new page if the text is full
+}
+
+
+
+pdf.save(title + ".pdf");
+
+}
+</script>
+
 <style>
 
     .rt{
