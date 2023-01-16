@@ -63,7 +63,7 @@ pdf.addFont('Helvetica', 'Helvetica', 'normal')
 pdf.setFont('Helvetica')
 
 
-
+pdf.setPageFormat("a4");
 pdf.setFontSize(25);
 pdf.setTextColor(255, 255, 255);
 pdf.text(title.toUpperCase(), pdf.internal.pageSize.getWidth() / 2, 15, { align: "center" });
